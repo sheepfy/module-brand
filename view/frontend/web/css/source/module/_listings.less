@@ -1,0 +1,105 @@
+& when (@media-common = true) {
+    .brand {
+        &-items {
+            .lib-inline-block-space-container();
+            &:extend(.abs-reset-list all);
+        }
+
+        &-item {
+            .lib-inline-block-space-item();
+            vertical-align: top;
+
+            .brands-grid & {
+                display: inline-block;
+                margin-left: 2%;
+                width: calc(~'(100% - 2%)/2');
+            }
+
+            &:nth-child(2n + 1) {
+                margin-left: 0;
+            }
+
+            &:extend(.abs-add-box-sizing all);
+
+            &-name {
+                &:extend(.abs-product-link all);
+                -moz-hyphens: auto;
+                -ms-hyphens: auto;
+                -webkit-hyphens: auto;
+                display: block;
+                hyphens: auto;
+                margin: @indent__xs 0;
+                word-wrap: break-word;
+            }
+        }
+    }
+
+    .column.main {
+        .brand {
+            &-items {
+                margin-left: 0;
+            }
+
+            &-item {
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .brands-grid {
+        .brand-item {
+            margin-bottom: @indent__base;
+            width: (100%/3);
+        }
+    }
+
+    .page-products,
+    .page-layout-1column,
+    .page-layout-3columns,
+    .page-products.page-layout-1column,
+    .page-products.page-layout-3columns {
+        .brands-grid {
+            .brand-item {
+                margin-left: 0;
+                width: calc(~'(100% - 4%) / 3');
+
+                &:nth-child(3n + 1) {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+    .brand-item-info {
+        .brands-grid & {
+            &:hover,
+            &.active {
+                .lib-css(background, @color-white);
+                .lib-css(box-shadow, 3px 4px 4px 0 rgba(0, 0, 0, .3));
+                border: 1px solid @color-gray-light2;
+                margin: -10px;
+                padding: 9px;
+                position: relative;
+                z-index: 9;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .brands-grid {
+        .brand-item {
+            width: (100%/5);
+        }
+    }
+}

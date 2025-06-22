@@ -1,0 +1,9 @@
+<?php
+/** @var \Blacksheep\Brand\Block\Brand\View $block */
+?>
+<?php $brand = $block->getBrand() ?>
+<?php if ($brand->getImage()): ?>
+    <div class="brand-main-image">
+        <?= $block->getBrandImage($brand, 'brand_main_image')->toHtml() ?>
+    </div>
+<?php endif ?>

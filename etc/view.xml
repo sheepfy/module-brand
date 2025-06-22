@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
+    <media>
+        <images module="Blacksheep_Brand">
+            <image id="brand_main_image" type="image">
+                <width>957</width>
+                <height>273</height>
+            </image>
+            <image id="brand_product_list" type="logo">
+                <width>120</width>
+                <height>120</height>
+                <constrain>false</constrain>
+                <aspect_ratio>true</aspect_ratio>
+                <frame>false</frame>
+            </image>
+            <image id="brand_product_view" type="logo">
+                <width>100</width>
+                <height>100</height>
+                <aspect_ratio>true</aspect_ratio>
+                <frame>true</frame>
+                <background>[255, 255, 255]</background>
+            </image>
+            <image id="brand_widget_grid" type="image">
+                <width>240</width>
+                <height>240</height>
+                <aspect_ratio>true</aspect_ratio>
+                <frame>true</frame>
+                <background>[255, 255, 255]</background>
+            </image>
+            <image id="brand_listing_thumbnail" type="logo">
+                <width>46</width>
+                <height>46</height>
+                <aspect_ratio>true</aspect_ratio>
+                <frame>true</frame>
+                <background>[255, 255, 255]</background>
+            </image>
+            <image id="brand_listing_thumbnail_preview" type="logo"/>
+        </images>
+    </media>
+    <vars module="Blacksheep_Brand">
+        <var name="brand_image_white_borders">1</var>
+    </vars>
+</view>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <container name="product.info.brand" htmlTag="div" htmlClass="product-info-brand">
+                <block class="Blacksheep\Brand\Block\Product\View\Brand" name="product.info.brand.template" template="Blacksheep_Brand::product/view/brand/image.phtml"/>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

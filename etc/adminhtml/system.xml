@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <group id="seo">
+                <field id="brand_url_prefix" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Brand URL Prefix</label>
+                    <backend_model>Blacksheep\Brand\Model\System\Config\Backend\Brand\Url\Rewrite\Prefix</backend_model>
+                    <comment>You need to refresh the cache.</comment>
+                </field>
+                <field id="brand_url_suffix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Brand URL Suffix</label>
+                    <backend_model>Blacksheep\Brand\Model\System\Config\Backend\Brand\Url\Rewrite\Suffix</backend_model>
+                    <comment>You need to refresh the cache.</comment>
+                </field>
+                <field id="brand_canonical_tag" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Use Canonical Link Meta Tag For Brands</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="layered_navigation">
+                <field id="display_brand" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Brand Filter</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        <section id="sitemap">
+            <group id="brand" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Brands Options</label>
+                <field id="changefreq" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Frequency</label>
+                    <source_model>Magento\Sitemap\Model\Config\Source\Frequency</source_model>
+                </field>
+                <field id="priority" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Priority</label>
+                    <backend_model>Magento\Sitemap\Model\Config\Backend\Priority</backend_model>
+                    <comment>Valid values range from 0.0 to 1.0.</comment>
+                </field>
+                <field id="image_include" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Add Images into Sitemap</label>
+                    <source_model>Blacksheep\Brand\Model\Config\Source\IncludeImage</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

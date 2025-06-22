@@ -1,0 +1,35 @@
+diff --git a/Setup/CategorySetup.php b/Setup/CategorySetup.php
+index f854245..dd47387 100644
+--- a/Setup/CategorySetup.php
++++ b/Setup/CategorySetup.php
+@@ -903,6 +903,30 @@ class CategorySetup extends EavSetup
+                         'comparable' => false,
+                         'unique' => false,
+                     ],
++                    'brand' => [
++                        'type' => 'int',
++                        'frontend' => '',
++                        'backend' => '',
++                        'label' => 'Brand',
++                        'input' => 'select',
++                        'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE,
++                        'unique' => false,
++                        'class' => '',
++                        'visible' => true,
++                        'required' => false,
++                        'user_defined' => false,
++                        'searchable' => true,
++                        'filterable' => true,
++                        'comparable' => false,
++                        'visible_on_front' => true,
++                        'used_in_product_listing' => true,
++                        'is_used_in_grid' => true,
++                        'is_filterable_in_grid' => true,
++                        'show_in_grid' => true,
++                        'system' => true,
++                        'source' => \Blacksheep\Brand\Model\Source\Brand::class,
++                        'apply_to' => ''
++                    ]
+                 ],
+             ]
+         ];

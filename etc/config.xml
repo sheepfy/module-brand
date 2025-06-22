@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <seo>
+                <brand_url_suffix>.html</brand_url_suffix>
+                <brand_canonical_tag>0</brand_canonical_tag>
+            </seo>
+            <layered_navigation>
+                <display_brand>1</display_brand>
+            </layered_navigation>
+        </catalog>
+        <sitemap>
+            <brand>
+                <priority>0.75</priority>
+                <changefreq>daily</changefreq>
+                <image_include>all</image_include>
+            </brand>
+        </sitemap>
+        <design>
+            <watermark_brand>
+                <image_position>stretch</image_position>
+                <logo_position>stretch</logo_position>
+            </watermark_brand>
+        </design>
+    </default>
+</config>

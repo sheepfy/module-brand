@@ -1,0 +1,8 @@
+<?php
+/** @var \Blacksheep\Brand\Block\Widget\BrandsList $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<?php foreach ($block->getProducts() as $product): ?>
+    <?= $escaper->escapeHtml($product->getName()) ?>
+<?php endforeach ?>

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">brand_listing.brands_listing_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Brand Label Here</item>
+    </argument>
+    <settings>
+        <deps>
+            <dep>brand_listing.brands_listing_data_source</dep>
+        </deps>
+        <spinner>brand_columns</spinner>
+        <buttons>
+            <button name="add">
+                <url path="*/*/edit"/>
+                <class>primary</class>
+                <label translate="true">Add New Brand</label>
+            </button>
+        </buttons>
+    </settings>
+    <dataSource name="brands_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Blacksheep_Brand::brands</aclResource>
+        <dataProvider name="brands_listing_data_source" class="Blacksheep\Brand\Ui\Component\Listing\DataProvider\Brand">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top" template="ui/grid/toolbar">
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+        <bookmark name="bookmarks"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                    <confirm>
+                        <title translate="true">Delete brands</title>
+                        <message translate="true">Are you sure you wan't to delete selected brands?</message>
+                    </confirm>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="brand_columns" >
+        <selectionsColumn name="ids" sortOrder="5">
+            <settings>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="entity_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="name" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="logo" class="Blacksheep\Brand\Ui\Component\Listing\Column\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="30">
+            <settings>
+                <altField>name</altField>
+                <hasPreview>true</hasPreview>
+                <label translate="true">Logo</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="status" class="Blacksheep\Brand\Ui\Component\Listing\Column\Status" sortOrder="40">
+            <settings>
+                <options class="Blacksheep\Brand\Model\Config\Source\Status"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="priority" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Priority</label>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="60">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="70">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Modified</label>
+            </settings>
+        </column>
+        <column name="page_title">
+            <settings>
+                <label translate="true">Page Title</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="description">
+            <settings>
+                <label translate="true">Description</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="meta_title">
+            <settings>
+                <label translate="true">Meta Title</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="meta_keywords">
+            <settings>
+                <label translate="true">Meta Keywords</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="meta_description">
+            <settings>
+                <label translate="true">Meta Description</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="show_in_carousel">
+            <settings>
+                <label translate="true">Show in carousel</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="image">
+            <settings>
+                <label translate="true">Image</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Blacksheep\Brand\Ui\Component\Listing\Column\BrandActions">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

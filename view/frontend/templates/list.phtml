@@ -1,0 +1,24 @@
+<?php
+/** @var \Blacksheep\Brand\Block\ListBrand $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$brandList = $block->getBrandsAToZ();
+?>
+<?php if (!count($brandList)): ?>
+    <div class="message info empty">
+        <div><?= /* @noEscape */ __('No brands found.')->render() ?></div>
+    </div>
+<?php else: ?>
+    <div id="brands-tree">
+        <?php /** @var \Blacksheep\Brand\Model\Brand[] $brands */ ?>
+        <?php foreach ($brandList as $letter => $brands): ?>
+            <h2><?= $escaper->escapeHtml($letter) ?></h2>
+            <ul>
+                <?php foreach ($brands as $brand): ?>
+                    <li>
+                        <a href="<?= $escaper->escapeUrl($block->getBrandUrl($brand)) ?>"><?= $escaper->escapeHtml($brand->getName()) ?> (<?= $brand->getProductCount() ?>)</a>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        <?php endforeach ?>
+    </div>
+<?php endif ?>

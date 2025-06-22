@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/brand" method="POST">
+        <service class="Blacksheep\Brand\Api\BrandRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Blacksheep_Brand::save"/>
+        </resources>
+    </route>
+    <route url="/V1/brand/:id" method="DELETE">
+        <service class="Blacksheep\Brand\Api\BrandRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Blacksheep_Brand::delete"/>
+        </resources>
+    </route>
+    <route url="/V1/brand/:id" method="GET">
+        <service class="Blacksheep\Brand\Api\BrandRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Blacksheep_Brand::list"/>
+        </resources>
+    </route>
+    <route url="/V1/brand" method="GET">
+        <service class="Blacksheep\Brand\Api\BrandRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Blacksheep_Brand::list"/>
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,15 @@
+<?php
+/** @var \Blacksheep\Brand\Block\Product\View\Brand $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$brand = $block->getBrand();
+$brandImage = $block->getBrandImage($brand, 'brand_product_view');
+?>
+<div class="brand-image">
+    <a href="<?= $block->getBrandUrl($brand) ?>" title="<?= $escaper->escapeHtml($brand->getName()) ?>" class="brand-info"><?= $brandImage->toHtml() ?></a>
+</div>
+<div class="brand-link">
+    <a href="<?= $escaper->escapeUrl($block->getBrandUrl($brand)) ?>" title="<?= $escaper->escapeHtmlAttr($brand->getName()) ?>">
+        <span class="link-show"><?= /* @noEscape */ __('Show all')->render() ?></span>
+        <?= $escaper->escapeHtml($brand->getName()) . '-' . __('brand products')->render() ?>
+    </a>
+</div>

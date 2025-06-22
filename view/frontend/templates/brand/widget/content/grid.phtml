@@ -1,0 +1,39 @@
+<?php
+/** @var \Blacksheep\Brand\Block\Widget\Brand\BrandsList $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+$items = $block->getBrands();
+$image = 'brand_widget_grid';
+?>
+<div class="block widget block-brands-list grid">
+    <?php if ($block->getTitle()): ?>
+        <div class="block-title">
+            <strong><?= $escaper->escapeHtml(__($block->getTitle())) ?></strong>
+        </div>
+    <?php endif ?>
+    <div class="block-content">
+        <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
+        <div class="brands-grid grid">
+            <ol class="brand-items widget-brand-grid">
+                <?php $iterator = 1; ?>
+                <?php foreach ($items as $item): ?>
+                    <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="brand-item">' : '</li><li class="brand-item">' ?>
+                    <div class="brand-item-info">
+                        <a href="<?= $escaper->escapeUrl($block->getBrandUrl($item)) ?>" class="brand-item-photo">
+                            <?= $block->getImage($item, $image)->toHtml() ?>
+                        </a>
+                        <div class="brand-item-details">
+                            <strong class="brand-item-name">
+                                <a title="<?= $escaper->escapeHtml($item->getName()) ?>" href="<?= $escaper->escapeUrl($block->getBrandUrl($item)) ?>" class="brand-item-link">
+                                    <?= $escaper->escapeHtml($item->getName()) ?>
+                                </a>
+                            </strong>
+                        </div>
+                    </div>
+                    <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                <?php endforeach ?>
+            </ol>
+        </div>
+        <?= $block->getPagerHtml() ?>
+    </div>
+</div>

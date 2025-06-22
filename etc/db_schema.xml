@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="catalog_brand_entity" resource="default" engine="innodb" comment="Catalog Brand Entity">
+        <column name="entity_id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true" comment="Brand ID"/>
+        <column name="name" xsi:type="text" nullable="false" comment="Name"/>
+        <column name="page_title" xsi:type="text" nullable="true" comment="Page Title"/>
+        <column name="description" xsi:type="mediumtext" nullable="true" comment="Description"/>
+        <column name="url_key" xsi:type="varchar" length="100" nullable="false" comment="Url Key"/>
+        <column name="image" xsi:type="text" nullable="true" comment="Image"/>
+        <column name="logo" xsi:type="text" nullable="true" comment="Logo"/>
+        <column name="status" xsi:type="smallint" default="1" nullable="false" comment="Status"/>
+        <column name="priority" xsi:type="int" default="0" nullable="false" comment="Priority"/>
+        <column name="show_in_carousel" xsi:type="smallint" default="0" nullable="false" comment="Show In carousel"/>
+        <column name="meta_title" xsi:type="varchar" nullable="true" length="255" comment="Meta Title"/>
+        <column name="meta_keywords" xsi:type="text" nullable="true" comment="Meta Keywords"/>
+        <column name="meta_description" xsi:type="text" nullable="true" comment="Meta Description"/>
+        <column name="created_at" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column name="updated_at" xsi:type="timestamp" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="UNIQUE_URL_KEY">
+            <column name="url_key"/>
+        </constraint>
+        <index referenceId="CATALOG_BRAND_NAME" indexType="fulltext">
+            <column name="name"/>
+        </index>
+    </table>
+    <table name="catalog_brand_product_index" resource="default" engine="innodb" comment="Catalog Brand Product Index">
+        <column xsi:type="int" name="brand_id" unsigned="true" nullable="false" identity="false" default="0" comment="Brand ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" identity="false" default="0" comment="Product ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
+        <column xsi:type="smallint" name="visibility" unsigned="true" nullable="false" identity="false" comment="Visibility"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="brand_id"/>
+            <column name="product_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="CAT_BRD_PRD_IDX_PRD_ID_STORE_ID_BRD_ID_VISIBILITY" indexType="btree">
+            <column name="brand_id"/>
+            <column name="product_id"/>
+            <column name="store_id"/>
+            <column name="visibility"/>
+        </index>
+        <index referenceId="CAT_BRD_PRD_IDX_STORE_ID_BRD_ID_VISIBILITY" indexType="btree">
+            <column name="brand_id"/>
+            <column name="store_id"/>
+            <column name="visibility"/>
+        </index>
+    </table>
+    <table name="catalog_brand_product_index_tmp" resource="default" engine="innodb" comment="Catalog Brand Product Indexer Temporary Table">
+        <column xsi:type="int" name="brand_id" unsigned="true" nullable="false" identity="false" default="0" comment="Brand ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" identity="false" default="0" comment="Product ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
+        <column xsi:type="smallint" name="visibility" unsigned="true" nullable="false" identity="false" comment="Visibility"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="brand_id"/>
+            <column name="product_id"/>
+            <column name="store_id"/>
+        </constraint>
+    </table>
+    <table name="catalog_brand_product_index_replica" resource="default" engine="innodb" comment="Catalog Brand Product Index Replica">
+        <column xsi:type="int" name="brand_id" unsigned="true" nullable="false" identity="false" default="0" comment="Brand ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" identity="false" default="0" comment="Product ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
+        <column xsi:type="smallint" name="visibility" unsigned="true" nullable="false" identity="false" comment="Visibility"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="brand_id"/>
+            <column name="product_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="CAT_BRD_PRD_IDX_PRD_ID_STORE_ID_BRD_ID_VISIBILITY" indexType="btree">
+            <column name="brand_id"/>
+            <column name="product_id"/>
+            <column name="store_id"/>
+            <column name="visibility"/>
+        </index>
+        <index referenceId="CAT_BRD_PRD_IDX_STORE_ID_BRD_ID_VISIBILITY_IS_PARENT" indexType="btree">
+            <column name="brand_id"/>
+            <column name="store_id"/>
+            <column name="visibility"/>
+        </index>
+    </table>
+</schema>

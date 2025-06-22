@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_collection_load_after">
+        <observer name="blacksheep_brand_append_brand_to_product" instance="Blacksheep\Brand\Observer\AddBrandObjectToProduct"/>
+    </event>
+    <event name="page_block_html_topmenu_gethtml_before">
+        <observer name="blacksheep_brand_menu_link" instance="Blacksheep\Brand\Observer\AddBrandMenu"/>
+    </event>
+</config>

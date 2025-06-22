@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Blacksheep_Brand::brands" title="Brands" translate="title" module="Blacksheep_Brand" parent="Magento_Catalog::inventory" sortOrder="50" dependsOnModule="Blacksheep_Brand" resource="Blacksheep_Brand::brands" action="catalog/brand"/>
+    </menu>
+</config>

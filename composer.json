@@ -1,0 +1,27 @@
+{
+    "name": "blacksheep/module-brand",
+    "description": "Catalog Brand Module",
+    "require": {
+        "magento/framework": "*",
+        "cweagans/composer-patches": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Blacksheep\\Brand\\": ""
+        }
+    },
+    "extra": {
+        "magento-force": true,
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "magento/module-catalog": {
+                "add brand attribute": "vendor/blacksheep/module-brand/patches/composer/add-brand-attribute.diff"
+            }
+        }
+    }
+}

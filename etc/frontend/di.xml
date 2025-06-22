@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="brands" xsi:type="array">
+                    <item name="class" xsi:type="string">Blacksheep\Brand\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">35</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Blacksheep\Brand\Model\Layer\Brand">
+        <arguments>
+            <argument name="context" xsi:type="object">Blacksheep\Brand\Model\Layer\Brand\Context</argument>
+        </arguments>
+    </type>
+    <virtualType name="Blacksheep\Brand\Model\Layer\Brand\Context" type="Magento\Catalog\Model\Layer\Context">
+        <arguments>
+            <argument name="collectionProvider" xsi:type="object">Blacksheep\Brand\Model\Layer\Brand\ItemCollectionProvider</argument>
+            <argument name="stateKey" xsi:type="object">Blacksheep\Brand\Model\Layer\Brand\StateKey</argument>
+            <argument name="collectionFilter" xsi:type="object">Magento\Catalog\Model\Layer\Search\CollectionFilter</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Blacksheep\Brand\Model\Layer\Brand\ItemCollectionProvider" type="Magento\Catalog\Model\Layer\Search\ItemCollectionProvider">
+        <arguments>
+            <argument name="collectionFactory" xsi:type="object">Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Blacksheep\Brand\Block\Navigation" type="Magento\LayeredNavigation\Block\Navigation">
+        <arguments>
+            <argument name="filterList" xsi:type="object">brandFilterList</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="brandFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+        <arguments>
+            <argument name="filterableAttributes" xsi:type="object">Blacksheep\Brand\Model\Layer\Brand\FilterableAttributeList</argument>
+            <argument name="filters" xsi:type="array">
+                <item name="category" xsi:type="string">Magento\CatalogSearch\Model\Layer\Filter\Category</item>
+                <item name="price" xsi:type="string">Magento\CatalogSearch\Model\Layer\Filter\Price</item>
+                <item name="decimal" xsi:type="string">Magento\CatalogSearch\Model\Layer\Filter\Decimal</item>
+                <item name="attribute" xsi:type="string">Magento\CatalogSearch\Model\Layer\Filter\Attribute</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\App\ResourceConnection">
+        <plugin name="get_catalog_brand_product_index_table_name" type="Blacksheep\Brand\Model\Indexer\Brand\Product\Plugin\TableResolver" sortOrder="10"/>
+    </type>
+</config>

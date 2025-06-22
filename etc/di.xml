@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Blacksheep\Brand\Api\Data\BrandInterface" type="Blacksheep\Brand\Model\Brand"/>
+    <preference for="Blacksheep\Brand\Api\Data\BrandSearchResultsInterface" type="Blacksheep\Brand\Model\BrandSearchResults"/>
+    <preference for="Blacksheep\Brand\Api\BrandRepositoryInterface" type="Blacksheep\Brand\Model\BrandRepository"/>
+    <preference for="Blacksheep\Brand\Model\Brand\Media\ConfigInterface" type="Blacksheep\Brand\Model\Brand\Media\Config"/>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="blacksheep_brand_product_identities" type="Blacksheep\Brand\Plugin\Magento\Catalog\Model\Product" sortOrder="100"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Action">
+        <plugin name="blacksheep_brand_product_action_reindex" type="Blacksheep\Brand\Plugin\Magento\Catalog\Model\Product\Action" sortOrder="100"/>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="resize_images" xsi:type="object">Blacksheep\Brand\Console\Command\ImageResizeCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Blacksheep\Brand\Model\View\Asset\Image">
+        <arguments>
+            <argument name="context" xsi:type="object">Blacksheep\Brand\Model\View\Asset\Image\Context</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Layer\Resolver">
+        <arguments>
+            <argument name="layersPool" xsi:type="array">
+                <item name="brand" xsi:type="string">Blacksheep\Brand\Model\Layer\Brand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Theme\Model\Design\Config\MetadataProvider">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="watermark_brand_image_size" xsi:type="array">
+                    <item name="path" xsi:type="string">design/watermark_brand/image_size</item>
+                    <item name="fieldset" xsi:type="string">other_settings/watermark_brand/image</item>
+                </item>
+                <item name="watermark_brand_image_imageOpacity" xsi:type="array">
+                    <item name="path" xsi:type="string">design/watermark_brand/image_imageOpacity</item>
+                    <item name="fieldset" xsi:type="string">other_settings/watermark_brand/image</item>
+                </item>
+                <item name="watermark_brand_image_image" xsi:type="array">
+                    <item name="path" xsi:type="string">design/watermark_brand/image_image</item>
+                    <item name="fieldset" xsi:type="string">other_settings/watermark_brand/image</item>
+                    <item name="backend_model" xsi:type="string">Magento\Theme\Model\Design\Backend\Image</item>
+                    <item name="upload_dir" xsi:type="array">
+                        <item name="config" xsi:type="string">system/filesystem/media</item>
+                        <item name="scope_info" xsi:type="string">1</item>
+                        <item name="value" xsi:type="string">catalog/brand/watermark</item>
+                    </item>
+                    <item name="base_url" xsi:type="array">
+                        <item name="type" xsi:type="string">media</item>
+                        <item name="scope_info" xsi:type="string">1</item>
+                        <item name="value" xsi:type="string">catalog/brand/watermark</item>
+                    </item>
+                </item>
+                <item name="watermark_brand_image_position" xsi:type="array">
+                    <item name="path" xsi:type="string">design/watermark_brand/image_position</item>
+                    <item name="fieldset" xsi:type="string">other_settings/watermark_brand/image</item>
+                </item>
+                <item name="watermark_brand_logo_size" xsi:type="array">
+                    <item name="path" xsi:type="string">design/watermark_brand/logo_size</item>
+                    <item name="fieldset" xsi:type="string">other_settings/watermark_brand/logo</item>
+                </item>
+                <item name="watermark_brand_logo_imageOpacity" xsi:type="array">
+                    <item name="path" xsi:type="string">design/watermark_brand/logo_imageOpacity</item>
+                    <item name="fieldset" xsi:type="string">other_settings/watermark_brand/logo</item>
+                </item>
+                <item name="watermark_brand_logo_image" xsi:type="array">
+                    <item name="path" xsi:type="string">design/watermark_brand/logo_image</item>
+                    <item name="fieldset" xsi:type="string">other_settings/watermark_brand/logo</item>
+                    <item name="backend_model" xsi:type="string">Magento\Theme\Model\Design\Backend\Image</item>
+                    <item name="upload_dir" xsi:type="array">
+                        <item name="config" xsi:type="string">system/filesystem/media</item>
+                        <item name="scope_info" xsi:type="string">1</item>
+                        <item name="value" xsi:type="string">catalog/brand/watermark</item>
+                    </item>
+                    <item name="base_url" xsi:type="array">
+                        <item name="type" xsi:type="string">media</item>
+                        <item name="scope_info" xsi:type="string">1</item>
+                        <item name="value" xsi:type="string">catalog/brand/watermark</item>
+                    </item>
+                </item>
+                <item name="watermark_brand_logo_position" xsi:type="array">
+                    <item name="path" xsi:type="string">design/watermark_brand/logo_position</item>
+                    <item name="fieldset" xsi:type="string">other_settings/watermark_brand/logo</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Blacksheep\Brand\Model\BrandImageUpload" type="Blacksheep\Brand\Model\ImageUploader">
+        <arguments>
+            <argument name="imageType" xsi:type="string">image</argument>
+            <argument name="baseTmpPath" xsi:type="string">tmp/catalog/brand/image</argument>
+            <argument name="basePath" xsi:type="string">catalog/brand/image</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="svg" xsi:type="string">svg</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+                <item name="svg" xsi:type="string">image/svg</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Blacksheep\Brand\Model\BrandLogoUpload" type="Blacksheep\Brand\Model\ImageUploader">
+        <arguments>
+            <argument name="imageType" xsi:type="string">logo</argument>
+            <argument name="baseTmpPath" xsi:type="string">tmp/catalog/brand/logo</argument>
+            <argument name="basePath" xsi:type="string">catalog/brand/logo</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="svg" xsi:type="string">svg</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+                <item name="svg" xsi:type="string">image/svg</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Sitemap\Model\ItemProvider\Composite">
+        <arguments>
+            <argument name="itemProviders" xsi:type="array">
+                <item name="brandProvider" xsi:type="object">Blacksheep\Brand\Model\Sitemap\ItemProvider\Brand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Blacksheep\Brand\Model\Sitemap\ItemProvider\Brand">
+        <arguments>
+            <argument name="configReader" xsi:type="object">Blacksheep\Brand\Model\Sitemap\ItemProvider\BrandConfigReader</argument>
+        </arguments>
+    </type>
+</config>

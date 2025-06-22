@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">brand_form.brands_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <deps>
+            <dep>brand_form.brands_form_data_source</dep>
+        </deps>
+        <label translate="true">General Information</label>
+        <namespace>brand_form</namespace>
+        <buttons>
+            <button name="back">
+                <url path="*/*/"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="delete" class="Blacksheep\Brand\Block\Adminhtml\Brand\Edit\DeleteButton"/>
+            <button name="save">
+                <class>primary</class>
+                <label translate="true">Save</label>
+            </button>
+            <button name="save_and_continue">
+                <url path="*/*/save"/>
+                <class>secondary</class>
+                <label translate="true">Save and Continue Edit</label>
+            </button>
+        </buttons>
+        <dataScope>data</dataScope>
+    </settings>
+    <dataSource name="brands_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <aclResource>Blacksheep_Brand::brands</aclResource>
+        <dataProvider name="brands_form_data_source" class="Blacksheep\Brand\Ui\DataProvider\Brand">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">General</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <dataScope>general</dataScope>
+        </settings>
+        <field name="entity_id" sortOrder="10" formElement="input">
+            <settings>
+                <visible>false</visible>
+                <dataType>integer</dataType>
+                <dataScope>entity_id</dataScope>
+            </settings>
+        </field>
+        <field name="status" sortOrder="20" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Active</label>
+                <dataType>boolean</dataType>
+                <dataScope>status</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <prefer>toggle</prefer>
+                        <valueMap>
+                            <map name="true" xsi:type="number">1</map>
+                            <map name="false" xsi:type="number">2</map>
+                        </valueMap>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="name" sortOrder="30" formElement="input">
+            <settings>
+                <label translate="true">Name</label>
+                <dataType>text</dataType>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="priority" sortOrder="40" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Priority</label>
+                <dataType>integer</dataType>
+                <dataScope>priority</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="image" sortOrder="50" formElement="fileUploader">
+            <settings>
+                <label translate="true">Image</label>
+                <visible>true</visible>
+                <componentType>fileUploader</componentType>
+                <dataType>string</dataType>
+                <notice translate="true">Allowed file types are jpg, jpeg, png, gif, svg.</notice>
+                <required>true</required>
+                <dataScope>image</dataScope>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg png gif svg</allowedExtensions>
+                        <placeholderType>image</placeholderType>
+                        <uploaderConfig>
+                            <param name="url" xsi:type="url" path="*/*/upload/type/image"/>
+                        </uploaderConfig>
+                        <maxFileSize>2097152</maxFileSize>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+        <field name="logo" sortOrder="60" formElement="fileUploader">
+            <settings>
+                <label translate="true">Logo</label>
+                <visible>true</visible>
+                <componentType>fileUploader</componentType>
+                <dataType>string</dataType>
+                <notice translate="true">Allowed file types are jpg, jpeg, png, gif, svg.</notice>
+                <required>true</required>
+                <dataScope>logo</dataScope>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg png gif svg</allowedExtensions>
+                        <placeholderType>image</placeholderType>
+                        <uploaderConfig>
+                            <param name="url" xsi:type="url" path="*/*/upload/type/logo"/>
+                        </uploaderConfig>
+                        <maxFileSize>2097152</maxFileSize>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+        <field name="show_in_carousel" sortOrder="70" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Show in carousel</label>
+                <dataType>boolean</dataType>
+                <dataScope>show_in_carousel</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <prefer>toggle</prefer>
+                        <valueMap>
+                            <map name="true" xsi:type="number">1</map>
+                            <map name="false" xsi:type="number">0</map>
+                        </valueMap>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="content" sortOrder="20">
+        <settings>
+            <label translate="true">Content</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <dataScope>general</dataScope>
+        </settings>
+        <field name="page_title" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Page Title</label>
+                <dataScope>page_title</dataScope>
+            </settings>
+        </field>
+        <field name="description" formElement="wysiwyg" template="ui/form/field" sortOrder="20">
+            <settings>
+                <label translate="true">Description</label>
+                <dataScope>description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <rows>8</rows>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="search_engine_optimisation" sortOrder="30">
+        <settings>
+            <label translate="true">Search Engine Optimization</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <dataScope>general</dataScope>
+        </settings>
+        <field name="url_key" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">URL Key</label>
+                <dataScope>url_key</dataScope>
+            </settings>
+        </field>
+        <field name="meta_title" sortOrder="20" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Title</label>
+                <dataScope>meta_title</dataScope>
+            </settings>
+        </field>
+        <field name="meta_keywords" formElement="textarea" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Keywords</label>
+                <dataScope>meta_keywords</dataScope>
+            </settings>
+        </field>
+        <field name="meta_description" formElement="textarea" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Description</label>
+                <dataScope>meta_description</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

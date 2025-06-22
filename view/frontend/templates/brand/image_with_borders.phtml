@@ -1,0 +1,39 @@
+<?php
+/** @var \Blacksheep\Brand\Block\Brand\Image $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+$width = (int)$block->getWidth();
+$height = (int)$block->getHeight();
+$paddingBottom = $block->getRatio() * 100;
+?>
+<span class="brand-image-container brand-image-container-<?= /* @noEscape */ $block->getBrandId() ?>">
+    <span class="brand-image-wrapper">
+        <img class="<?= $escaper->escapeHtmlAttr($block->getClass()) ?>"
+            <?php foreach ($block->getCustomAttributes() as $name => $value): ?>
+                <?= $escaper->escapeHtmlAttr($name) ?>="<?= $escaper->escapeHtmlAttr($value) ?>"
+            <?php endforeach; ?>
+            src="<?= $escaper->escapeUrl($block->getImageUrl()) ?>"
+            loading="lazy"
+            width="<?= $escaper->escapeHtmlAttr($block->getWidth()) ?>"
+            height="<?= $escaper->escapeHtmlAttr($block->getHeight()) ?>"
+            alt="<?= $escaper->escapeHtmlAttr($block->getLabel()) ?>"/></span>
+</span>
+<?php
+$styles = <<<STYLE
+.brand-image-container-{$block->getBrandId()} {
+    width: {$width}px;
+    height: auto;
+    aspect-ratio: {$width} / {$height};
+}
+.brand-image-container-{$block->getBrandId()} span.brand-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) {
+    .brand-image-container-{$block->getBrandId()} span.brand-image-wrapper {
+        padding-bottom: {$paddingBottom}%;
+    }
+}
+STYLE;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('style', [], $styles, false) ?>

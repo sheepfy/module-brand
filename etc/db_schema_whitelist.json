@@ -1,0 +1,69 @@
+{
+    "catalog_brand_entity": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "page_title": true,
+            "description": true,
+            "url_key": true,
+            "image": true,
+            "logo": true,
+            "status": true,
+            "priority": true,
+            "show_in_carousel": true,
+            "meta_title": true,
+            "meta_keywords": true,
+            "meta_description": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "CATALOG_BRAND_ENTITY_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "CATALOG_BRAND_ENTITY_URL_KEY": true
+        }
+    },
+    "catalog_brand_product_index": {
+        "column": {
+            "brand_id": true,
+            "product_id": true,
+            "store_id": true,
+            "visibility": true
+        },
+        "index": {
+            "CAT_BRAND_PRD_IDX_BRAND_ID_PRD_ID_STORE_ID_VISIBILITY": true,
+            "CATALOG_BRAND_PRODUCT_INDEX_BRAND_ID_STORE_ID_VISIBILITY": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "catalog_brand_product_index_tmp": {
+        "column": {
+            "brand_id": true,
+            "product_id": true,
+            "store_id": true,
+            "visibility": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "catalog_brand_product_index_replica": {
+        "column": {
+            "brand_id": true,
+            "product_id": true,
+            "store_id": true,
+            "visibility": true
+        },
+        "index": {
+            "CAT_BRAND_PRD_IDX_BRAND_ID_PRD_ID_STORE_ID_VISIBILITY": true,
+            "CATALOG_BRAND_PRODUCT_INDEX_BRAND_ID_STORE_ID_VISIBILITY": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

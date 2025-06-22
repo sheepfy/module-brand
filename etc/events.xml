@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="clean_catalog_images_cache_after">
+        <observer name="blacksheep_brand_clear_brand_images_cache" instance="Blacksheep\Brand\Observer\ClearImageCache"/>
+    </event>
+    <event name="catalog_brand_save_after">
+        <observer name="blacksheep_brand_generate_url_rewrite" instance="Blacksheep\Brand\Observer\GenerateBrandUrlRewrite"/>
+    </event>
+    <event name="catalog_product_save_commit_after">
+        <observer name="blacksheep_brand_catalog_commit_after" instance="Blacksheep\Brand\Observer\CatalogProductSaveCommitAfterObserver"/>
+    </event>
+    <event name="catalog_product_delete_commit_after">
+        <observer name="blacksheep_brand_catalog_commit_after" instance="Blacksheep\Brand\Observer\CatalogProductDeleteCommitAfterObserver"/>
+    </event>
+</config>
