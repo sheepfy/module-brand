@@ -22,9 +22,6 @@ class CreateBrandCategoryAttribute implements DataPatchInterface, PatchRevertabl
         private CategorySetupFactory $categorySetupFactory
     ) {}
 
-    /**
-     * @inheritDoc
-     */
     public function apply(): static
     {
         $categorySetup = $this->getCategorySetup();
@@ -60,12 +57,8 @@ class CreateBrandCategoryAttribute implements DataPatchInterface, PatchRevertabl
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function revert(): void
     {
-        /** @var CategorySetup $setup */
         $categorySetup = $this->getCategorySetup();
         $categorySetup->removeAttribute(
             CategoryAttributeInterface::ENTITY_TYPE_CODE,
@@ -73,27 +66,16 @@ class CreateBrandCategoryAttribute implements DataPatchInterface, PatchRevertabl
         );
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getAliases(): array
     {
         return [];
     }
 
-    /**
-     * @inheritDoc
-     */
     public static function getDependencies(): array
     {
         return [];
     }
 
-    /**
-     * Get / create a category setup model
-     *
-     * @return CategorySetup
-     */
     private function getCategorySetup(): CategorySetup
     {
         return $this->categorySetupFactory->create([

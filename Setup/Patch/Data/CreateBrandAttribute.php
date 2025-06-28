@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Blacksheep\Brand\Setup\Patch\Data;
 
+use Blacksheep\Brand\Model\Source\Brand;
 use Magento\Catalog\Model\Product;
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -39,7 +41,7 @@ class CreateBrandAttribute implements DataPatchInterface
                 'label' => 'Brand',
                 'input' => 'select',
                 'class' => '',
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE,
+                'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'visible' => true,
                 'required' => false,
                 'user_defined' => false,
@@ -53,7 +55,7 @@ class CreateBrandAttribute implements DataPatchInterface
                 'show_in_grid' => true,
                 'system' => true,
                 'unique' => false,
-                'source' => \Blacksheep\Brand\Model\Source\Brand::class,
+                'source' => Brand::class,
                 'apply_to' => ''
             ]
         );
